@@ -28,6 +28,14 @@ public class Repository<T>(StoreContext context) : IRepository<T> where T : Base
         return await ApplySpecification(spec).ToListAsync();
     }
 
+    public async Task<int> CountAsync(ISpecification<T> spec)
+    {
+        var query = context.Set<T>().AsQueryable();
+        query = spec.ApplyCriteria(query);
+        
+        return await query.CountAsync(); 
+    }
+
     public async Task<TResult?> GetEntityWithSpec<TResult>(ISpecification<T, TResult> spec)
     {
         return await ApplySpecification(spec).FirstOrDefaultAsync();
