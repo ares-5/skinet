@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-public class ProductsController(IRepository<Product> repository) : BaseApiController
+public sealed class ProductsController(IRepository<Product> repository) : BaseApiController
 {
     private readonly IRepository<Product> repository = repository;
     
