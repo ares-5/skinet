@@ -15,6 +15,7 @@ import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-shop',
+  standalone: true,
   imports: [
     ProductItemComponent,
     MatButton,
