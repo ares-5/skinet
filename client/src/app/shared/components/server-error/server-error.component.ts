@@ -7,6 +7,7 @@ import {MatCard} from '@angular/material/card';
   imports: [
     MatCard
   ],
+  standalone: true,
   templateUrl: './server-error.component.html',
   styleUrl: './server-error.component.scss'
 })

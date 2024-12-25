@@ -13,7 +13,6 @@ import {MatDivider} from '@angular/material/divider';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
   imports: [
     MatBadge,
     MatIcon,
@@ -27,6 +26,7 @@ import {MatDivider} from '@angular/material/divider';
     MatDivider,
     MatMenuItem
   ],
+  standalone: true,
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

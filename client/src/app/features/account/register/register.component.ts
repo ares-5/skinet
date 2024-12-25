@@ -15,6 +15,7 @@ import {TextInputComponent} from '../../../shared/components/text-input/text-inp
     MatButton,
     TextInputComponent
   ],
+  standalone: true,
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

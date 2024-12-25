@@ -10,6 +10,7 @@ import {RouterLink} from '@angular/router';
     MatButton,
     RouterLink
   ],
+  standalone: true,
   templateUrl: './empty-state.component.html',
   styleUrl: './empty-state.component.scss'
 })

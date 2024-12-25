@@ -8,7 +8,6 @@ import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-filters-dialog',
-  standalone: true,
   imports: [
     MatDivider,
     MatSelectionList,
@@ -16,6 +15,7 @@ import {FormsModule} from '@angular/forms';
     MatButton,
     FormsModule
   ],
+  standalone: true,
   templateUrl: './filters-dialog.component.html',
   styleUrl: './filters-dialog.component.scss'
 })

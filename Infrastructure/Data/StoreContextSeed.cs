@@ -3,7 +3,7 @@ using Core.Entities;
 
 namespace Infrastructure.Data;
 
-public class StoreContextSeed
+public static class StoreContextSeed
 {
     public static async Task SeedAsync(StoreContext context)
     {
@@ -18,6 +18,20 @@ public class StoreContextSeed
             }
             
             context.Products.AddRange(products);
+            await context.SaveChangesAsync();
+        }
+        
+        if (!context.DeliveryMethods.Any())
+        {
+            var deliveryMethodsData = await File.ReadAllTextAsync("../Infrastructure/Data/delivery.json");
+            var deliveryMethods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryMethodsData);
+
+            if (deliveryMethods is null)
+            {
+                return;
+            }
+            
+            context.DeliveryMethods.AddRange(deliveryMethods);
             await context.SaveChangesAsync();
         }
     }

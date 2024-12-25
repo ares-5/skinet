@@ -471,9 +471,6 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-API/appsettings.json
-
-
 # Compiled output
 /dist
 /tmp
@@ -506,3 +503,4 @@ testem.log
 /typings
 client/.angular/cache
 
+API/appsettings.json

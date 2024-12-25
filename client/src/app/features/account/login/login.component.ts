@@ -17,6 +17,7 @@ import {ActivatedRoute, Router} from '@angular/router';
     MatButton,
     MatInput
   ],
+  standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

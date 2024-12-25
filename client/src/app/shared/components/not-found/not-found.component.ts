@@ -10,6 +10,7 @@ import {MatButton} from '@angular/material/button';
     RouterLink,
     MatButton
   ],
+  standalone: true,
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.scss'
 })

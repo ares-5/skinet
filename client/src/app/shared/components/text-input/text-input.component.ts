@@ -12,6 +12,7 @@ import {MatInput} from '@angular/material/input';
     MatError,
     MatLabel
   ],
+  standalone: true,
   templateUrl: './text-input.component.html',
   styleUrl: './text-input.component.scss'
 })

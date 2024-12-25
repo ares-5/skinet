@@ -11,6 +11,7 @@ import {EmptyStateComponent} from '../../shared/components/empty-state/empty-sta
     OrderSummaryComponent,
     EmptyStateComponent
   ],
+  standalone: true,
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })

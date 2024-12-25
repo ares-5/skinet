@@ -15,6 +15,7 @@ import {CartService} from '../../../core/services/cart.service';
     CurrencyPipe,
     MatButton
   ],
+  standalone: true,
   templateUrl: './cart-item.component.html',
   styleUrl: './cart-item.component.scss'
 })

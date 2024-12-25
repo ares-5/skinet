@@ -52,7 +52,7 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
             return NoContent();
         }
         
-        var user = await signInManager.UserManager.GetUserByEmailAsync(User);
+        var user = await signInManager.UserManager.GetUserByEmailWithAddressAsync(User);
 
         return Ok(new
         {
@@ -70,7 +70,7 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
     }
 
     [Authorize]
-    [HttpGet("address")]
+    [HttpPost("address")]
     public async Task<ActionResult<Address>> CreateOrUpdateAddressAsync(AddressDto addressDto)
     {
         var user = await signInManager.UserManager.GetUserByEmailWithAddressAsync(User);
