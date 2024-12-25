@@ -7,10 +7,10 @@ namespace API.Controllers;
 
 public class PaymentController(
     IPaymentService paymentService,
-    IRepository<DeliveryMethod> dmRepository) : BaseApiController
+    IUnitOfWork unit) : BaseApiController
 {
     private readonly IPaymentService paymentService = paymentService;
-    private readonly IRepository<DeliveryMethod> dmRepository = dmRepository;
+    private readonly IUnitOfWork unit = unit;
 
     [Authorize]
     [HttpPost("{cartId}")]
@@ -28,6 +28,6 @@ public class PaymentController(
     [HttpGet("delivery-methods")]
     public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
     {
-        return Ok(await dmRepository.ListAllAsync());
+        return Ok(await unit.Repository<DeliveryMethod>().ListAllAsync());
     }
 }

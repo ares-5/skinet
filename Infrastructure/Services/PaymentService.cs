@@ -9,20 +9,18 @@ namespace Infrastructure.Services;
 public sealed class PaymentService(
     IConfiguration config,
     ICartService cartService,
-    IRepository<Product> productRepository,
-    IRepository<DeliveryMethod> dmRepository) : IPaymentService
+    IUnitOfWork unit) : IPaymentService
 {
     private readonly IConfiguration config = config;
-    private readonly ICartService _cartService = cartService;
-    private readonly IRepository<Product> _productRepository = productRepository;
-    private readonly IRepository<DeliveryMethod> _dmRepository = dmRepository;
+    private readonly ICartService cartService = cartService;
+    private readonly IUnitOfWork unit = unit;
 
     public async Task<ShoppingCart?> CreateOrUpdatePaymentIntent(string cartId)
     {
         var shippingPrice = 0m;
         StripeConfiguration.ApiKey = config["StripeSettings:SecretKey"];
         
-        var cart = await _cartService.GetCartAsync(cartId);
+        var cart = await cartService.GetCartAsync(cartId);
         if (cart is null)
         {
             return null;
@@ -30,7 +28,7 @@ public sealed class PaymentService(
 
         if (cart.DeliveryMethodId.HasValue)
         {
-            var deliveryMethod = await _dmRepository.GetByIdAsync(cart.DeliveryMethodId.Value);
+            var deliveryMethod = await unit.Repository<DeliveryMethod>().GetByIdAsync(cart.DeliveryMethodId.Value);
             if (deliveryMethod is null)
             {
                 return null;
@@ -41,7 +39,7 @@ public sealed class PaymentService(
 
         foreach (var item in cart.Items)
         {
-            var productItem = await _productRepository.GetByIdAsync(item.ProductId);
+            var productItem = await unit.Repository<Product>().GetByIdAsync(item.ProductId);
             if (productItem is null)
             {
                 return null;
@@ -77,7 +75,7 @@ public sealed class PaymentService(
             intent = await service.UpdateAsync(cart.PaymentIntentId, options);
         }
 
-        await _cartService.SetCartAsync(cart);
+        await cartService.SetCartAsync(cart);
         return cart;
     }
 }

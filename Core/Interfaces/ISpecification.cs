@@ -14,6 +14,9 @@ public interface ISpecification<T>
     Expression<Func<T, object>>? OrderBy { get; }
     
     Expression<Func<T, object>>? OrderByDescending { get; }
+    
+    List<string> IncludeStrings { get; } // For ThenInclude
+    List<Expression<Func<T, object>>> Includes { get; }
 
     IQueryable<T> ApplyCriteria(IQueryable<T> query);
 }

@@ -67,11 +67,6 @@ public class Repository<T>(StoreContext context) : IRepository<T> where T : Base
         return await context.Set<T>().AnyAsync(x => x.Id == id);
     }
 
-    public async Task<bool> SaveAllAsync()
-    {
-        return await context.SaveChangesAsync() > 0;
-    }
-
     private IQueryable<T> ApplySpecification(ISpecification<T> spec)
     {
         return SpecificationEvaluator<T>.GetQuery(context.Set<T>().AsQueryable(), spec);
